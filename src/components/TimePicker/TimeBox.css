@@ -1,0 +1,20 @@
+.time-box {
+	background-color: #ccc;
+	border-radius: 5%;
+	font-size: 2em;
+	margin: 0.2em;
+	padding: 1em 0.2em;
+	width: 4em;
+	color: #2f2f2f;
+	text-align: center;
+}
+
+.minute-group .time-box {
+	border-radius: 30%;
+	background-color: #999;
+}
+
+.time-box.selected {
+	background-color: #fb0400;
+	color: #fff;
+}
