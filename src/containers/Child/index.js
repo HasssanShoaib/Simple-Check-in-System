@@ -13,7 +13,7 @@ class Child extends PureComponent {
 
 	componentDidMount() {
 		if (!this.props.children) {
-			// this.handleFetchChildren();
+			this.handleFetchChildren();
 		}
 	}
 
@@ -71,7 +71,7 @@ Child.defaultProps = {
   }
 }
 
-const mapStateToProps = ({children, auth}, props) => {
+const mapStateToProps = ({ children, auth }, props) => {
 	const childId = props.match.params.id;
 	const { pickupTime, isFetching, isCheckingIn, isCheckingOut } = children;
 
