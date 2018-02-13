@@ -87,7 +87,7 @@ class TimePicker extends PureComponent {
 	      <div className="minute-group">
 	    		{ this.renderMinutes() }
 	    	</div>
-      </div>
+      	</div>
     );
   }
 }
@@ -106,7 +106,7 @@ TimePicker.defaultProps = {
 	format: "ampm",
 	hourStep: 1,
 	minuteStep: 15,
-	minHours: 1,
+	minHours: 0,
 	maxHours: 23,
 	onChange: () => null
 }
