@@ -1,5 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import { history } from './redux/store';
+
 import {
   Child,
   ChildGroup,
@@ -9,14 +12,14 @@ import {
 } from './containers';
 
 const Routes = (props) => (
-  <BrowserRouter>
+  <ConnectedRouter history={history}>
     <Switch>
       <Route exact path="/" component={Login}/>
       <PrivateRoute path="/child/:id" redirectTo="/" component={Child}/>
       <PrivateRoute path="/childGroup" redirectTo="/" component={ChildGroup}/>      
       <Route path="*" component={NotFound} />
     </Switch>
-  </BrowserRouter>
+  </ConnectedRouter>
 )
 
 export default Routes;

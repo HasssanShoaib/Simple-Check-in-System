@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { push } from 'react-router-redux'
+
 import { arrayToObject } from '../../helpers/converter';
 import { encodeData } from '../../helpers/query';
 import { LOGOUT } from './auth';
@@ -76,7 +78,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isCheckingIn: false,
-        children: action.children
+        children: action.children,
+        pickupTime: initialState.pickupTime
       };
     case CHILD_CHECKIN_FAIL:
       return {
@@ -143,7 +146,8 @@ export const checkinChild = (childId, pickupTime, accessToken) => (dispatch, get
 		const { hours, minutes } = pickupTime;
 		const timeStr = hours + ":" + minutes;
 		const updatedChildren = changeStatus(getState().children, childId, true, timeStr);
-		dispatch({ type: CHILD_CHECKIN_SUCCESS, children: updatedChildren })
+    dispatch({ type: CHILD_CHECKIN_SUCCESS, children: updatedChildren });
+    dispatch(push('/childGroup'));
 	})
 	.catch((error) => {
 		dispatch({ 
@@ -165,7 +169,8 @@ export const checkoutChild = (childId, accessToken) => (dispatch, getState) => {
 	})
 	.then(() => {
 		const updatedChildren = changeStatus(getState().children, childId, false);
-		dispatch({ type: CHILD_CHECKOUT_SUCCESS, children: updatedChildren })
+    dispatch({ type: CHILD_CHECKOUT_SUCCESS, children: updatedChildren })
+    dispatch(push('/childGroup'));
 	})
 	.catch((error) => {
 		dispatch({ 
